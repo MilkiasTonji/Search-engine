@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    h3 Create word bank
+    .row
+        .col-sm-6
+            form(method="post")
+                fieldset.form-group
+                    label(for="name") Word:
+                    input.form-control(name="word", type="text", placeholder="Enter the word")
+                    
+                    label(for="name") Meaning:
+                    input.form-control(name="meaning", type="text", placeholder="Enter the meaning")
+                    
+                button.btn.btn-primary.pull-left(type="submit") Add 
+                button.btn.btn-danger.pull-right(href="/admin/rooms") Cancel
+                table.table.table-striped
+

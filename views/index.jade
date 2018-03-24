@@ -1,0 +1,119 @@
+extends layout
+
+block content
+      
+    h3 List of words and their meaning
+    .row
+        .col-lg-6
+            .input-group
+                input.form-control#search-input(type='text', placeholder='Search for words....')
+                span.input-group-btn
+                    button.btn.btn-default#go(type='button') Search
+            p#suggestion
+            #response
+                span.word
+                span.meaning
+    script(src='style.js')
+    script.
+      
+      let input = document.getElementById('search-input');
+      let goButton = document.getElementById('go');
+      let word = document.getElementsByClassName('word');
+      let meaning = document.getElementsByClassName('meaning');
+      let suggest = document.getElementById('suggestion');
+      
+      function ser(a){
+      input.value = a;
+      let httpRequest = new XMLHttpRequest();
+      var wordText = input.value;
+      word[0].textContent = wordText + " : ";
+      httpRequest.onreadystatechange = function(){
+      if(httpRequest.readyState == XMLHttpRequest.DONE){
+      if(httpRequest.status == 200){
+      if(wordText != ''){
+      meaning[0].textContent = httpRequest.responseText;
+      }
+      else{
+      meaning[0].textContent = "";
+      }
+      }
+      }
+      }
+      httpRequest.open('GET', '/dictionary?word=' + wordText, true);
+      httpRequest.send();
+      }
+      input.oninput = function(){
+      let httpRequest = new XMLHttpRequest();
+      var wordText = input.value;
+      // word[0].textContent = wordText + " : ";
+      if(wordText != ""){
+      httpRequest.onreadystatechange = function(){
+      if(httpRequest.readyState == XMLHttpRequest.DONE){
+      if(httpRequest.status == 200){
+      suggest.innerHTML = httpRequest.responseText;
+      }
+      else{
+      meaning[0].textContent = "";
+      }
+      }
+      }
+      httpRequest.open('GET', '/suggestion?word=' + wordText, true);
+      httpRequest.send();
+      }else{
+      suggest.innerHTML = "";
+      }
+      }
+      goButton.onclick = function(){
+      let httpRequest = new XMLHttpRequest();
+      var wordText = input.value;
+      word[0].textContent = wordText + " : ";
+      httpRequest.onreadystatechange = function(){
+      if(httpRequest.readyState == XMLHttpRequest.DONE){
+      if(httpRequest.status == 200){
+      meaning[0].textContent = httpRequest.responseText;
+      }
+      else{
+      meaning[0].textContent = "";
+      }
+      }
+      if(httpRequest.readyState ==4){
+      var display = document.getElementById('search-input');
+      display.innerHTML = httpRequest.responseText;
+      }
+      }
+      httpRequest.open('GET', '/dictionary?word=' + wordText, true);
+      httpRequest.send();
+      }
+
+    
+    div.pull-right
+
+        
+        .room_datas
+            table.table.table-bordered0
+                thead
+                    tr
+                        th Word
+                        th Meaning
+                        th Edit
+                        th Favourites
+                        
+                tbody
+                    each word in words
+                        tr
+                            td= word.word 
+                            
+                            td= word.meaning
+                            td(style="width: 50px;")
+                                a(href="/words/edit/#{word.id}")
+                                    span.glyphicon.glyphicon-edit
+                            td(style="width: 50px;")
+                                a.href(href="/words")
+                                    span.glyphicon.glyphicon-heart
+                            
+            a.btn.btn-primary.pull-right(href="/words/add") Add Word
+
+        
+
+                            
+

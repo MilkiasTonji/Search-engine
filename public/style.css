@@ -1,0 +1,58 @@
+body{
+    padding-top:50px;
+}
+.main-content{
+    margin-top: 30px;
+    margin-left:-250px;
+}
+.room_datas{
+    margin-top:30px;
+
+}
+.btn-primary{
+    margin:20px;
+}
+.navbar-default{
+    color:#00695c;
+}
+h5{
+    color:red;
+    margin-top: 100px;
+    background: #e2e9d7; 
+    font-size:18px;
+
+}
+#suggestion{
+    color:green;
+    width: 200px;
+}
+.btns{
+    background:white;
+}
+.btn-primary{
+    background:#0091ea;
+}
+.btn-danger{
+    margin-top: 20px;
+}
+.glyphicon-edit{
+    margin-left:10px;
+}
+.glyphicon-heart{
+    margin-left:20px;
+}
+.span{
+    color:green;
+    margin-left:400px;
+    font-style: italic;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+li a:hover{
+    background:#26a69a;
+    text-decoration:none;
+    color:white;
+}
+li a:hover .span{
+    color:white;
+}

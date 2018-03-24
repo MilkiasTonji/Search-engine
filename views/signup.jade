@@ -1,0 +1,22 @@
+extends layout2
+
+block content
+  .main.container
+    .row
+      .col-md-6.col-md-offset-3
+        h1.display-4.m-b-2 Signup
+        form(method='POST' action='/signup')
+          div.form-group
+            label(for='email') Username
+            input.form-control(type='text' id='username' placeholder='user name' name='username')
+          div.form-group
+            label(for='password') Email
+            input.form-control(type='text' id='email' placeholder='Email' name='email')
+          div.form-group
+            label(for='password') Password
+            input.form-control(type='password' id='password' placeholder='password' name='password') 
+            button.btn.btn-primary.pull-left(type='submit') Sign up
+          div.pull-right 
+            p Not interested?
+            a(href="/login") Cancel
+             

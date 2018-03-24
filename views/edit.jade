@@ -1,0 +1,19 @@
+extends layout
+
+block content
+
+    .row
+        .col-sm-12
+            h3 Edit the word and meaning
+            form(method="post")
+                fieldset.form-group
+                    label(for="name") Word:
+                    input.form-control(name="word", type="text", value="#{word[0].word}")
+                    label(for="name") Meaning:
+                    input.form-control(name="meaning", type="text", value="#{word[0].meaning}")
+                    
+
+                button.btn.btn-primary.pull-left(type="submit") Update
+                a.btn.btn-danger.pull-right(href="/words") Cancel
+
+
